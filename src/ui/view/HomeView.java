@@ -1,5 +1,7 @@
 package ui.view;
 
+import controller.view.HomeController;
+
 import ui.view.BaseView;
 
 import javax.swing.JButton;
@@ -18,7 +20,7 @@ public class HomeView extends BaseView {
     /**
      * A button to access to the editable menu
      */
-    private JButton editableMap;
+    private JButton editMap;
 
     /**
      * A button to access to the coos menu of map
@@ -38,5 +40,15 @@ public class HomeView extends BaseView {
     public HomeView() {
         super();
         
+        this.editMap = new JButton("Edit maps");
+        this.chooseMap = new JButton("Choose map");
+        this.exitApplication = new JButton("Exit application");
+
+        //add the buttons to the view
+        this.add(this.editMap);
+        this.add(this.chooseMap);
+        this.add(this.exitApplication);
+
+        this.controller = new HomeController(this.editMap, this.chooseMap, this.exitApplication, this);
     }
 }

@@ -2,6 +2,10 @@ package ui;
 
 import ui.view.HomeView;
 import ui.view.BaseView;
+import ui.view.EditMapView;
+import ui.modal.ExitApplicationModal;
+
+import enums.WindowViewState;
 
 import javax.swing.JFrame;
 
@@ -30,6 +34,11 @@ public class Window extends JFrame {
      */
     private BaseView currentView;
 
+    /**
+     * The current state for the component displayed in the window
+     */
+    private WindowViewState state;
+
     public Window() {
         super("Zomby Game");
 
@@ -38,6 +47,39 @@ public class Window extends JFrame {
         this.setLocationRelativeTo(null);
 
         //default view
+        this.state = WindowViewState.HOME_STATE;
         this.currentView = new HomeView();
+        this.add(this.currentView, BorderLayout.CENTER);
+
+    }
+
+    /**
+     * Change the view according to a new state
+     * @param state The new state 
+     */
+    public void changeViewTo(WindowViewState state) {
+        this.state = state;
+        this.remove(this.currentView);
+
+        this.setSize(WIDTH, HEIGHT);
+
+        if(this.state.equals(WindowViewState.HOME_STATE)) {
+            this.currentView = new HomeView();
+        } else if(this.state.equals(WindowViewState.IN_GAME_STATE)) {
+
+        } else if(this.state.equals(WindowViewState.EDIT_MAP_STATE)) {
+            this.setSize(900, 900);
+            this.currentView = new EditMapView();
+        } else if(this.state.equals(WindowViewState.CHOOSE_MAP_STATE)) {
+
+        }
+
+        this.add(this.currentView);
+        this.revalidate();
+    }
+
+    public void closeApplicationWithMessage(String message) {
+        ExitApplicationModal modal = new ExitApplicationModal(message);
+        this.dispose();
     }
 }
