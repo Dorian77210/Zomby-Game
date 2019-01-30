@@ -11,4 +11,6 @@ import java.awt.Color;
 public class Palette {
 
     public static final Color TILE_BORDER_COLOR = Color.BLACK;
+    public static final Color NO_SELECTED_BUTTON_COLOR = new Color(0xddded6);
+    public static final Color SELECTED_BUTTON_COLOR = new Color(0x151ec1);
 }

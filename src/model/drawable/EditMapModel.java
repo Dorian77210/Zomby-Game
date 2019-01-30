@@ -1,6 +1,15 @@
 package model.drawable;
 
+import ui.view.EditMapView;
+
+import java.awt.image.BufferedImage;
+
+import java.io.File;
+import java.io.IOException;
+
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 /**
   * The class <code>EditMapModel</code> represents the model of the edit map
@@ -15,21 +24,66 @@ public class EditMapModel {
      */
     private boolean canDisplayTiles;
 
+    /**
+     * Background image of the map
+     */
+    private BufferedImage backgroundImage;
+
     public EditMapModel() { 
         this.canDisplayTiles = true; //default value
+        this.backgroundImage = null;
     }
 
     /***************************** 
     ************GETTER************
     *****************************/
+
+    /**
+     * Get if the view can display the tiles
+     * @return True if it is, else false
+     */
     public boolean canDisplayTiles() {
         return this.canDisplayTiles;
+    }
+
+    /**
+     * Get the background of the map
+     * @return The background of the map
+     */
+    public BufferedImage background() {
+        return this.backgroundImage;
+    }
+    
+    /**
+     * Get if the map has background image
+     * @return true if it is, else false
+     */
+    public boolean hasBackground() {
+        return this.backgroundImage != null;
     }
 
     /***************************** 
     ************SETTER************
     *****************************/
+
+    /**
+     * Set the canDisplay state
+     * *@param canDisplayTiles The new state
+     */
     public void canDisplayTiles(boolean canDisplayTiles) {
         this.canDisplayTiles = canDisplayTiles;
+    }
+
+    /**
+     * Set the background of the map
+     * @param background The new background
+     */
+    public void background(File background) {
+        try {
+            this.backgroundImage = ImageIO.read(background);
+        } catch(IOException exception) {
+            System.err.println("Error when loading background image");
+        }
+
     }
 }

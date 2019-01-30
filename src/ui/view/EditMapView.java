@@ -3,6 +3,9 @@ package ui.view;
 import model.drawable.Tile;
 import model.drawable.EditMapModel;
 
+import ui.view.editable.ChoiceItemView;
+
+import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Dimension;
@@ -26,12 +29,12 @@ public class EditMapView extends BaseView {
     /**
      * Constant used to have the width of this view
      */
-    private static final int WIDTH = 600;
+    public static final int WIDTH = 600;
 
     /**
      * Constant used t have the height of this view
      */
-    private static final int HEIGHT = 600;
+    public static final int HEIGHT = 600;
 
     /**
      * The model that contains all sprites of the map
@@ -40,8 +43,11 @@ public class EditMapView extends BaseView {
 
     public EditMapView() {
         super();
+        this.setLayout(new BorderLayout());
 
         this.model = new EditMapModel();
+
+        this.add(new ChoiceItemView(this.model), BorderLayout.EAST);
 
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.generateTiles();
@@ -68,6 +74,10 @@ public class EditMapView extends BaseView {
         if(this.isOpaque()) {
             g.setColor(this.getBackground());
             g.fillRect(0, 0, this.getWidth(),  this.getHeight());
+        }
+
+        if(this.model.hasBackground()) {
+            g.drawImage(this.model.background(), 0, 0, null);
         }
 
         if(this.model.canDisplayTiles()) {
