@@ -26,7 +26,7 @@ public abstract class Entity {
     public Entity(Point point) {
     }
 
-    abstract void collide(Entity entity);    
+    abstract boolean collide(Entity entity);    
 
     /***************************** 
     ***********GETTER************

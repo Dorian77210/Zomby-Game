@@ -12,6 +12,6 @@ public class ExitApplicationModal extends JOptionPane {
 
     public ExitApplicationModal(String message) {
         super();
-        showMessageDialog(null, "Closing message", message, JOptionPane.INFORMATION_MESSAGE);
+        showMessageDialog(null, message, "Closing application" JOptionPane.INFORMATION_MESSAGE);
     }
 }

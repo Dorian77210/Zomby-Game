@@ -27,7 +27,7 @@ public class EntityGroup extends ArrayList<Entity> {
      */
     public boolean collide(Entity entity) {
         for(Entity e : this) {
-            if(e.surface().intersects(entity.surface())) {
+            if(e.collide(entity)) {
                 return true;
             }
         }
@@ -43,7 +43,7 @@ public class EntityGroup extends ArrayList<Entity> {
     public boolean collide(EntityGroup group) {
         for(Entity e1 : this) {
             for(Entity e2 : group) {
-                if(e1.surface().intersects(e2.surface())) {
+                if(e1.collide(e2)) {
                     return true;
                 }
             }
@@ -59,7 +59,7 @@ public class EntityGroup extends ArrayList<Entity> {
     public void collideAndRemove(Entity entity) {
         EntityGroup toRemove = new EntityGroup();
         for(Entity e : this) {
-            if(e.surface().intersects(entity.surface())) {
+            if(e.collide(entity)) {
                 toRemove.add(e);
             }
         }
