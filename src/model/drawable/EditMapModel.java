@@ -5,6 +5,7 @@ import ui.view.EditMapView;
 import model.sprite.Entity;
 import model.sprite.ItemEntity;
 import model.sprite.EntityGroup;
+import model.sprite.BackgroundEntity;
 
 import java.awt.image.BufferedImage;
 
@@ -31,7 +32,7 @@ public class EditMapModel {
     /**
      * Background image of the map
      */
-    private BufferedImage backgroundImage;
+    private BackgroundEntity backgroundImage;
 
     private ItemEntity selectedSprite;
 
@@ -69,7 +70,7 @@ public class EditMapModel {
      * Get the background of the map
      * @return The background of the map
      */
-    public BufferedImage background() {
+    public BackgroundEntity background() {
         return this.backgroundImage;
     }
     
@@ -98,11 +99,7 @@ public class EditMapModel {
      * @param background The new background
      */
     public void background(File background) {
-        try {
-            this.backgroundImage = ImageIO.read(background);
-        } catch(IOException exception) {
-            System.err.println("Error when loading background image");
-        }
+        this.backgroundImage = new BackgroundEntity(background.getAbsolutePath());
 
     }
 

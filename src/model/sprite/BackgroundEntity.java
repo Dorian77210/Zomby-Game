@@ -10,12 +10,12 @@ import java.awt.Point;
 
 import org.json.JSONObject;
 
-public class ItemEntity extends Entity {
+public class BackgroundEntity extends Entity {
 
     private String file;
 
-    public ItemEntity(int x, int y, String image) {
-        super(x, y);
+    public BackgroundEntity(String image) {
+        super(0, 0);
         this.file = image;
 
         try {
@@ -24,18 +24,17 @@ public class ItemEntity extends Entity {
             System.err.println("Error when loading the image " + image);
         }
 
-        this.surface = new Surface(new Point(x, y), this.image.getWidth(), this.image.getHeight());
+        this.surface = new Surface(new Point(0, 0), this.image.getWidth(), this.image.getHeight());
     }
 
     @Override 
     public boolean collide(Entity entity) {
-        return this.surface.intersects(entity.surface);
+        return false;
     }
 
     public JSONObject toJSONFormat() {
         JSONObject json = new JSONObject();
 
-        json.put(JSONParser.SURFACE_JSON_TAG, this.surface.toJSONFormat());
         json.put(JSONParser.PATH_JSON_TAG, this.file);
 
         return json;

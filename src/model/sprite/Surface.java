@@ -2,7 +2,12 @@ package model.sprite;
 
 import java.awt.Dimension;
 import java.awt.Rectangle;
+
+import json.JSONParser;
+
 import java.awt.Point;
+
+import org.json.JSONObject;
 
 /**
   * The class <code>Surface</code> reresents the surface of an entity
@@ -25,5 +30,14 @@ public class Surface extends Rectangle {
 
     public Surface(Point point, Dimension dimension) {
         super(point.x, point.y, dimension.width, dimension.height);
+    }
+
+    public JSONObject toJSONFormat() {
+        JSONObject json = new JSONObject();
+
+        json.put(JSONParser.X_JSON_TAG, this.x);
+        json.put(JSONParser.Y_JSON_TAG, this.y);
+
+        return json;
     }
 }

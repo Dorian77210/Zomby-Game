@@ -1,7 +1,7 @@
 package ui.view.editable;
 
 import controller.base.ActionController;
-import controller.view.editable.SelectionController;
+import controller.view.drawable.SelectionController;
 
 import ui.view.BaseView;
 import ui.view.editable.ChoiceItemView;

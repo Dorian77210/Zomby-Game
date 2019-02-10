@@ -14,6 +14,7 @@ import model.sprite.EntityGroup;
 
 import controller.view.drawable.ItemDragController;
 import controller.view.drawable.ItemPoseController;
+import controller.view.drawable.DeleteItemController;
 
 import helper.Palette;
 
@@ -78,7 +79,7 @@ public class EditionView extends BaseView {
         }
 
         if(this.model.hasBackground()) {
-            g.drawImage(this.model.background(), 0, 0, null);
+            g.drawImage(this.model.background().getImage(), 0, 0, null);
         }
 
         

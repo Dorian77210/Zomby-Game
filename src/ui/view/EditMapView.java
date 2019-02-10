@@ -4,6 +4,7 @@ import model.drawable.EditMapModel;
 
 import ui.view.editable.ChoiceItemView;
 import ui.view.editable.EditionView;
+import ui.view.editable.EditActionView;
 
 import java.awt.BorderLayout;
 import java.awt.Graphics;
@@ -51,5 +52,9 @@ public class EditMapView extends BaseView {
         this.add(new ChoiceItemView(this.model), BorderLayout.EAST);
 
         this.add(this.editionView, BorderLayout.CENTER);
+
+        this.add(new EditActionView(this.model), BorderLayout.SOUTH);
+
+        new controller.view.drawable.DeleteItemController(this.model, this);
     }
 }
