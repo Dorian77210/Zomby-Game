@@ -33,7 +33,7 @@ public class ListView extends BaseView {
         //creations and adding of the views
 
         this.groundChoiceView = new GroundChoiceView(model);
-        this.itemChoiceView = new ItemChoiceView();
+        this.itemChoiceView = new ItemChoiceView(model);
 
         JScrollPane groundPane = new JScrollPane(this.groundChoiceView);
         groundPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);

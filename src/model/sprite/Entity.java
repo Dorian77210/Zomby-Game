@@ -3,6 +3,9 @@ package model.sprite;
 import java.awt.Rectangle;
 import java.awt.Point;
 
+import java.awt.image.BufferedImage;
+import java.awt.Dimension;
+
 /**
   * The class <code>Sprite</code> reresents a sprite
   * @version 1.0
@@ -17,13 +20,12 @@ public abstract class Entity {
 
     protected Surface surface;
 
+    protected BufferedImage image;
+
     /***************************** 
     *********CONSTRUCTORS*********
     *****************************/
     public Entity(int x, int y) {
-    }
-
-    public Entity(Point point) {
     }
 
     abstract boolean collide(Entity entity);    
@@ -48,7 +50,11 @@ public abstract class Entity {
      * Set a new surface for the entity
      * @param surface The new surface
      */
-    public void surface(Surface surface) {
-        this.surface = surface;
+    public void surface(Point p) {
+        this.surface = new Surface(p, this.surface.width, this.surface.height);
+    }
+
+    public BufferedImage getImage() {
+        return this.image;
     }
 }

@@ -2,6 +2,10 @@ package model.drawable;
 
 import ui.view.EditMapView;
 
+import model.sprite.Entity;
+import model.sprite.ItemEntity;
+import model.sprite.EntityGroup;
+
 import java.awt.image.BufferedImage;
 
 import java.io.File;
@@ -29,14 +33,29 @@ public class EditMapModel {
      */
     private BufferedImage backgroundImage;
 
+    private ItemEntity selectedSprite;
+
+    private EntityGroup group;
+
     public EditMapModel() { 
         this.canDisplayTiles = true; //default value
         this.backgroundImage = null;
+        this.group = new EntityGroup();
+    }
+
+    public void addWithVerification(Entity entity) {
+        if(!this.group.contains(entity)) {
+            this.group.add(entity);
+        }
     }
 
     /***************************** 
     ************GETTER************
     *****************************/
+
+    public EntityGroup getEntityGroup() {
+        return this.group;
+    }
 
     /**
      * Get if the view can display the tiles
@@ -85,5 +104,21 @@ public class EditMapModel {
             System.err.println("Error when loading background image");
         }
 
+    }
+
+    public void setSelectedItem(ItemEntity item) {
+        this.selectedSprite = item;
+    }
+
+    public boolean hasSelectedItem() {
+        return this.selectedSprite != null;
+    }
+
+    public ItemEntity getSelectedItem() {
+        return this.selectedSprite;
+    }
+
+    public void deleteSelectedItem() {
+        this.selectedSprite = null;
     }
 }

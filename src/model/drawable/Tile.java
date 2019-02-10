@@ -1,5 +1,9 @@
 package model.drawable;
 
+import model.sprite.Surface;
+
+import ui.view.editable.EditionView;
+
 import java.awt.Point;
 import java.awt.Polygon;
 
@@ -28,5 +32,25 @@ public class Tile extends Polygon {
         this.addPoint(corner.x + WIDTH, corner.y);
         this.addPoint(corner.x + WIDTH, corner.y + HEIGHT);
         this.addPoint(corner.x, corner.y + HEIGHT);
+    }
+
+    public static final Point getFarestDistance(Surface s) {
+        int xx = 0, yy = 0;
+
+        for(int x = 0; x < (EditionView.WIDTH / WIDTH); x++) {
+            if((x * WIDTH) <= s.x && (WIDTH * (x + 1)) >= s.x) {
+                xx = x * WIDTH;
+                break;
+            }
+        }
+
+        for(int y = 0; y < (EditionView.HEIGHT / HEIGHT); y++) {
+            if((y * WIDTH) <= s.y && (WIDTH * (y + 1)) >= s.y) {
+                yy = y * WIDTH;
+                break;
+            }
+        }
+
+        return new Point(xx, yy);
     }
 }

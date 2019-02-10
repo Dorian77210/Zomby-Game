@@ -1,40 +1,39 @@
 package controller.view.drawable;
 
+import model.drawable.EditMapModel;
+
+import ui.view.editable.ItemChoiceView;
+import ui.view.EditMapView;
+
 import controller.base.MouseController;
 
 import helper.Path;
 
-import ui.view.EditMapView;
-import ui.view.editable.GroundChoiceView;
-
-import model.drawable.EditMapModel;
-
-import java.awt.event.MouseEvent;
-import java.awt.Point;
+import model.sprite.ItemEntity;
 
 import java.io.File;
 
 import javax.swing.JList;
 
+import java.awt.event.MouseEvent;
+
 /**
-  * The class <code>GroudChoiceController</code> controls the selection of the ground
+  * The class <code>ItemChoiceController</code> controls the selection of items
   * @version 1.0
   * @author Dorian Terbah 
 **/
 
-public class GroundChoiceController extends MouseController {
+public class ItemChoiceController extends MouseController {
 
     /**
-     * The model of the map
+     * The map model
      */
     private EditMapModel model;
 
-    /**
-     * The view of the selection of map
-     */
-    private GroundChoiceView view;
+    private ItemChoiceView view;
 
-    public GroundChoiceController(EditMapModel model, GroundChoiceView view, JList<String> list) {
+    public ItemChoiceController(ItemChoiceView view, EditMapModel model, JList<String> list) {
+        super();
         this.model = model;
 
         this.view = view;
@@ -47,7 +46,8 @@ public class GroundChoiceController extends MouseController {
         JList<String> list = (JList<String>)event.getSource();
         String element = list.getSelectedValue();
 
-        this.model.background(new File(Path.GROUND_IMAGES_PATH + "/" + element));
+        String path = Path.ITEM_IMAGES_PATH + "/" + element;
+        this.model.setSelectedItem(new ItemEntity(0, 0, path));
 
         //refresh the view
         EditMapView editMapView = (EditMapView)this.view.getParent().getParent().getParent().getParent().getParent(); //ugly code x)
