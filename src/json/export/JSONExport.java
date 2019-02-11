@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class JSONExport {
 
-    public static final void exportJSON(String json, File file) {
+    public static final boolean exportJSON(String json, File file) {
         BufferedWriter writer;
 
         try {
@@ -18,19 +18,21 @@ public class JSONExport {
                 writer.write(json);
             } catch(IOException writerException) {
                 System.err.println("Error when writing line in the file " + file);
-                System.exit(1);
+                return false;
             }
 
             try {
                 writer.close();
             } catch(IOException closeException) {
                 System.err.println("Error when closing the file " + file);
-                System.exit(1);
+                return false;
             }
 
         } catch(IOException createWriter) {
             System.err.println("Error when creating the file writer for the file " + file);
-            System.exit(1);
+            return false;
         }
+
+        return true;
     }
 }

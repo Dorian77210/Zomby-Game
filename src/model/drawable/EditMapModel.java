@@ -98,8 +98,8 @@ public class EditMapModel {
      * Set the background of the map
      * @param background The new background
      */
-    public void background(File background) {
-        this.backgroundImage = new BackgroundEntity(background.getAbsolutePath());
+    public void background(String background) {
+        this.backgroundImage = new BackgroundEntity(background);
 
     }
 
@@ -117,5 +117,14 @@ public class EditMapModel {
 
     public void deleteSelectedItem() {
         this.selectedSprite = null;
+    }
+
+    public boolean canExportMap() {
+        return (this.backgroundImage != null && !this.group.isEmpty());
+    }
+
+    public void clear() {
+        this.selectedSprite = null;
+        this.group.clear();
     }
 }

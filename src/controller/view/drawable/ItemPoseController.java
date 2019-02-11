@@ -29,6 +29,12 @@ public class ItemPoseController extends MouseController {
     @Override 
     public void mouseClicked(MouseEvent event) {
         if(this.model.hasSelectedItem()) {
+            int button = event.getButton();
+            if(button == MouseEvent.BUTTON3) {
+                this.model.deleteSelectedItem();
+                this.view.repaint();
+                return;
+            }
             ItemEntity sprite = this.model.getSelectedItem();
             Surface s = sprite.surface();
 

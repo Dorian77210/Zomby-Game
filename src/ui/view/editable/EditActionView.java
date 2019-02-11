@@ -16,13 +16,18 @@ public class EditActionView extends BaseView {
 
     private JButton exportJSON;
 
-    public EditActionView(EditMapModel model) {
+    private JButton importJSON;
+
+    public EditActionView(EditMapModel model, EditionView view) {
         super();
         this.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         this.exportJSON = new JButton("Export map");
         this.add(this.exportJSON);
 
-        this.controller = new EditActionController(model, this.exportJSON);
+        this.importJSON = new JButton("Import map");
+        this.add(this.importJSON);
+
+        this.controller = new EditActionController(model, view, this.exportJSON, this.importJSON);
     }
 }

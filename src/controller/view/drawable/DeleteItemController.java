@@ -17,14 +17,11 @@ public class DeleteItemController extends KeyController {
     public DeleteItemController(EditMapModel model, EditMapView view) {
         this.model = model;
         this.view = view;
-
-        this.view.addKeyListener(this);
     }
 
     @Override 
     public void keyPressed(KeyEvent event) {
         int key = event.getKeyCode();
-        System.out.println("ok");
         if(key == KeyEvent.VK_DELETE) {
             if(this.model.hasSelectedItem()) {
                 this.model.deleteSelectedItem();

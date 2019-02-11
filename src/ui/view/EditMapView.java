@@ -6,13 +6,13 @@ import ui.view.editable.ChoiceItemView;
 import ui.view.editable.EditionView;
 import ui.view.editable.EditActionView;
 
+import helper.Palette;
+
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Dimension;
 import java.awt.Point;
-
-import helper.Palette;
 
 /**
   * The class <code>EditMapView</code> permits to create and modify map
@@ -53,8 +53,6 @@ public class EditMapView extends BaseView {
 
         this.add(this.editionView, BorderLayout.CENTER);
 
-        this.add(new EditActionView(this.model), BorderLayout.SOUTH);
-
-        new controller.view.drawable.DeleteItemController(this.model, this);
+        this.add(new EditActionView(this.model, this.editionView), BorderLayout.SOUTH);
     }
 }

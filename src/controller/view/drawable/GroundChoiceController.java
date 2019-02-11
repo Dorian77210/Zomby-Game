@@ -47,7 +47,7 @@ public class GroundChoiceController extends MouseController {
         JList<String> list = (JList<String>)event.getSource();
         String element = list.getSelectedValue();
 
-        this.model.background(new File(Path.GROUND_IMAGES_PATH + "/" + element));
+        this.model.background(Path.GROUND_IMAGES_PATH + "/" + element);
 
         //refresh the view
         EditMapView editMapView = (EditMapView)this.view.getParent().getParent().getParent().getParent().getParent(); //ugly code x)

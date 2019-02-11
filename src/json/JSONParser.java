@@ -5,10 +5,13 @@ import model.sprite.Surface;
 import model.sprite.BackgroundEntity;
 import model.sprite.ItemEntity;
 import model.sprite.EntityGroup;
+import model.sprite.EntityGroup;
 
 import org.json.JSONObject;
 
 import model.drawable.EditMapModel;
+
+import helper.Path;
 
 public class JSONParser {
 
@@ -46,8 +49,31 @@ public class JSONParser {
         BackgroundEntity background = model.background();
         json.put(BACKGROUND_JSON_TAG, background.toJSONFormat());
 
-        System.out.println(json);
-
         return json;
+    }
+
+    public static final void jsonToMap(EditMapModel model, JSONObject json) {
+        model.clear();
+        EntityGroup group = model.getEntityGroup();
+        JSONObject backgroundJSON = json.getJSONObject(BACKGROUND_JSON_TAG);
+        String background = backgroundJSON.getString(PATH_JSON_TAG);
+        model.background(background);
+
+        JSONObject surface, entity;
+        String path = "";
+
+        int x = 0, y = 0;
+        JSONObject entities = json.getJSONObject(ENTITIES_JSON_TAG);
+
+        for(String key : JSONObject.getNames(entities)) {
+            entity = entities.getJSONObject(key);
+            path = entity.getString(PATH_JSON_TAG);
+            surface = entity.getJSONObject(SURFACE_JSON_TAG);
+            x = surface.getInt(X_JSON_TAG);
+            y = surface.getInt(Y_JSON_TAG);
+
+            group.add(new ItemEntity(x, y, path));
+        }
+
     }
 }
