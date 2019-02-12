@@ -1,1 +1,1 @@
-{"entities":{"entity0":{"path":"./rsc/images/items/locker.png","surface":{"x":450,"y":90}}},"background":{"path":"./rsc/images/grounds/mossy-stone-ground.png"}}
+{"entities":{"entity1":{"path":"./rsc/images/items/distributor.png","surface":{"x":300,"y":120}},"entity2":{"path":"./rsc/images/items/locker.png","surface":{"x":150,"y":60}},"entity0":{"path":"./rsc/images/items/blue-suitcase.png","surface":{"x":540,"y":570}}},"background":{"path":"./rsc/images/grounds/mossy-stone-ground.png"}}

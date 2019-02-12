@@ -18,6 +18,12 @@ public class EditActionView extends BaseView {
 
     private JButton importJSON;
 
+    private JButton importItem;
+
+    private JButton guideButton;
+
+    private JButton backButton;
+
     public EditActionView(EditMapModel model, EditionView view) {
         super();
         this.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -28,6 +34,15 @@ public class EditActionView extends BaseView {
         this.importJSON = new JButton("Import map");
         this.add(this.importJSON);
 
-        this.controller = new EditActionController(model, view, this.exportJSON, this.importJSON);
+        this.importItem = new JButton("Import item");
+        this.add(this.importItem);
+
+        this.guideButton = new JButton("Guide");
+        this.add(this.guideButton);
+
+        this.backButton = new JButton("Back");
+        this.add(this.backButton);
+
+        this.controller = new EditActionController(model, view, this.exportJSON, this.importJSON, this.importItem, this.guideButton, this.backButton);
     }
 }
