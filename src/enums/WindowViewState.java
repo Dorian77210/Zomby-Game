@@ -10,5 +10,6 @@ public enum WindowViewState {
     EDIT_MAP_STATE,
     CHOOSE_MAP_STATE,
     HOME_STATE,
-    IN_GAME_STATE
+    IN_GAME_STATE,
+    PARAMETER_STATE
 }

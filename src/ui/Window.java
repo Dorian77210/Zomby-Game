@@ -3,6 +3,7 @@ package ui;
 import ui.view.HomeView;
 import ui.view.BaseView;
 import ui.view.EditMapView;
+import ui.view.binding.BindingTouchView;
 import ui.modal.ExitApplicationModal;
 
 import enums.WindowViewState;
@@ -72,6 +73,8 @@ public class Window extends JFrame {
             this.currentView = new EditMapView();
         } else if(this.state.equals(WindowViewState.CHOOSE_MAP_STATE)) {
 
+        } else if(this.state.equals(WindowViewState.PARAMETER_STATE)) {
+            this.currentView = new BindingTouchView();
         }
 
         this.add(this.currentView);

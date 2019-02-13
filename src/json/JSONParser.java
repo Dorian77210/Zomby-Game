@@ -33,6 +33,8 @@ public class JSONParser {
 
     public static final String HEIGHT_JSON_TAG = "height";
 
+    public static final int JSON_INDENTATIONS = 2;
+
     public static final JSONObject mapToJSON(EditMapModel model) {
         JSONObject json = new JSONObject();
         JSONObject entitiesJSON = new JSONObject();

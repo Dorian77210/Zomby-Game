@@ -35,6 +35,9 @@ public class HomeView extends BaseView {
     /**
      * The input controller for the home
      */
+
+     private JButton parametersButton;
+
     private HomeController controller;
 
     public HomeView() {
@@ -43,12 +46,14 @@ public class HomeView extends BaseView {
         this.editMap = new JButton("Edit maps");
         this.chooseMap = new JButton("Choose map");
         this.exitApplication = new JButton("Exit application");
+        this.parametersButton = new JButton("Parameters");
 
         //add the buttons to the view
         this.add(this.editMap);
         this.add(this.chooseMap);
         this.add(this.exitApplication);
+        this.add(this.parametersButton);
 
-        this.controller = new HomeController(this.editMap, this.chooseMap, this.exitApplication, this);
+        this.controller = new HomeController(this.editMap, this.chooseMap, this.exitApplication, this.parametersButton, this);
     }
 }

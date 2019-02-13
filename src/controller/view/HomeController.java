@@ -35,20 +35,26 @@ public class HomeController extends ActionController {
      */
     private static final String EXIT_APPLICATION_ACTION_COMMAND = "EXIT_APPLICATION_ACTION_COMMAND";
 
+    private static final String PARAMETERS_ACTION_COMMAND = "PARAMETERS_ACTION_COMMAND";
+
     /**
      * A reference to the home view
      */
     private BaseView view;
 
-    public HomeController(JButton editMap, JButton chooseMap, JButton exitApplication, BaseView view) {
+    public HomeController(JButton editMap, JButton chooseMap, JButton exitApplication, 
+    JButton parametersButton, BaseView view) 
+    {
         //set action command for all buttons
         editMap.setActionCommand(EDIT_MAP_ACTION_COMMAND);
         chooseMap.setActionCommand(CHOOSE_MAP_ACTION_COMMAND);
         exitApplication.setActionCommand(EXIT_APPLICATION_ACTION_COMMAND);
+        parametersButton.setActionCommand(PARAMETERS_ACTION_COMMAND);
 
         editMap.addActionListener(this);
         chooseMap.addActionListener(this);
         exitApplication.addActionListener(this);
+        parametersButton.addActionListener(this);
 
         this.view = view;
     }
@@ -64,6 +70,8 @@ public class HomeController extends ActionController {
             window.changeViewTo(WindowViewState.CHOOSE_MAP_STATE);
         } else if(actionCommand.equals(EXIT_APPLICATION_ACTION_COMMAND)){
             window.closeApplicationWithMessage("Exit application...");
+        } else if(actionCommand.equals(PARAMETERS_ACTION_COMMAND)) {
+            window.changeViewTo(WindowViewState.PARAMETER_STATE);
         }
     }
 }

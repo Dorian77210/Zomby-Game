@@ -78,7 +78,7 @@ public class EditActionController extends ActionController {
             if(this.model.canExportMap()) {
                 JSONObject json = JSONParser.mapToJSON(this.model);
                 String file = JOptionPane.showInputDialog("Enter a file name");
-                if(!JSONExport.exportJSON(json.toString(), new File(Path.MAP_PATH + "/" + file + ".map"))) {
+                if(!JSONExport.exportJSON(json.toString(JSONParser.JSON_INDENTATIONS), new File(Path.MAP_PATH + "/" + file + ".map"))) {
                     ErrorModal modal = new ErrorModal("Error when creating your file");
                 } else {
                     SuccessModal modal = new SuccessModal("Your map has been saved with success");
