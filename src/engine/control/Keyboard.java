@@ -1,11 +1,20 @@
 package engine.control;
 
+import helper.Path;
+
+import json.JSONParser;
+import json.imports.JSONImport;
+
 import enums.GameActions;
 
 import java.awt.event.KeyEvent;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import java.io.File;
+
+import org.json.JSONObject;
 
 public class Keyboard {
 
@@ -14,8 +23,13 @@ public class Keyboard {
     public static final int NUMBER_OF_POSSIBLE_ACTIONS = 5;
 
     public Keyboard() {
-        this.keyBinding = new HashMap<GameActions, String>(NUMBER_OF_POSSIBLE_ACTIONS);
-        this.setDefaultKeyBinding();
+        File file = new File(Path.KEY_CONFIG_PATH);
+        if(file.exists()) {
+            this.keyBinding = JSONParser.jsonToKeyboard(new JSONObject(JSONImport.load(file)));
+        } else {
+            this.keyBinding = new HashMap<GameActions, String>(NUMBER_OF_POSSIBLE_ACTIONS);
+            this.setDefaultKeyBinding();
+        }
     }
 
     private void setDefaultKeyBinding() {
@@ -50,5 +64,16 @@ public class Keyboard {
 
     public boolean isValidTouch(String touch) {
         return !this.keyBinding.containsValue(touch);
+    }
+
+    public JSONObject toJSONFormat() {
+        JSONObject json = new JSONObject();
+        for(Map.Entry<GameActions, String> entry : this.keyBinding.entrySet()) {
+            GameActions action = entry.getKey();
+            String value = entry.getValue();
+            json.put(action.toString(), value);
+        }
+
+        return json;
     }
 }

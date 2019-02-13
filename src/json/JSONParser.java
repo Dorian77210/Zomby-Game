@@ -7,11 +7,20 @@ import model.sprite.ItemEntity;
 import model.sprite.EntityGroup;
 import model.sprite.EntityGroup;
 
+import engine.Engine;
+import engine.control.Keyboard;
+
+import enums.GameActions;
+
 import org.json.JSONObject;
 
 import model.drawable.EditMapModel;
 
 import helper.Path;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Arrays;
 
 public class JSONParser {
 
@@ -33,7 +42,7 @@ public class JSONParser {
 
     public static final String HEIGHT_JSON_TAG = "height";
 
-    public static final int JSON_INDENTATIONS = 2;
+    public static final int JSON_INDENTATIONS = 4;
 
     public static final JSONObject mapToJSON(EditMapModel model) {
         JSONObject json = new JSONObject();
@@ -76,6 +85,31 @@ public class JSONParser {
 
             group.add(new ItemEntity(x, y, path));
         }
+    }
+
+    public static final JSONObject keyboardToJSON() {
+        return Engine.instance().getKeyboard().toJSONFormat();
+    }
+
+    public static final HashMap<GameActions, String> jsonToKeyboard(JSONObject json) {
+        HashMap<GameActions, String> keyBinding = new HashMap<GameActions, String>(Keyboard.NUMBER_OF_POSSIBLE_ACTIONS);
+        List<GameActions> actions = Arrays.asList(GameActions.MOVE_DOWN, GameActions.MOVE_UP, GameActions.MOVE_RIGHT, GameActions.MOVE_LEFT, GameActions.SHOOT);
+        
+        String touch = "";
+        String[] keys = JSONObject.getNames(json);
+        Arrays.sort(keys);
+
+        for(String key : keys) {
+            //find the action
+            touch = json.getString(key);
+            for(GameActions action : actions) {
+                if(action.toString().equals(key)) {
+                    keyBinding.put(action, touch);
+                }
+            }
+        }
+
+        return keyBinding;
 
     }
 }
