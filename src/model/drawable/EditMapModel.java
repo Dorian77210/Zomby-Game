@@ -1,6 +1,7 @@
 package model.drawable;
 
 import ui.view.EditMapView;
+import ui.view.editable.EditionView;
 
 import model.sprite.Entity;
 import model.sprite.ItemEntity;
@@ -8,6 +9,7 @@ import model.sprite.EntityGroup;
 import model.sprite.BackgroundEntity;
 
 import java.awt.image.BufferedImage;
+import java.awt.Graphics2D;
 
 import java.io.File;
 import java.io.IOException;
@@ -126,5 +128,20 @@ public class EditMapModel {
     public void clear() {
         this.selectedSprite = null;
         this.group.clear();
+    }
+
+    public BufferedImage toBufferedImage() {
+        BufferedImage image = new BufferedImage(EditionView.WIDTH, EditionView.HEIGHT, BufferedImage.TYPE_INT_ARGB);
+
+        Graphics2D g = image.createGraphics();
+        g.drawImage(this.backgroundImage.getImage(), this.backgroundImage.surface().x, this.backgroundImage.surface().y, null);
+
+        for(Entity entity : this.group) {
+            g.drawImage(entity.getImage(), entity.surface().x, entity.surface().y, null);
+        }
+
+        g.dispose();
+
+        return image;
     }
 }

@@ -20,6 +20,7 @@ import helper.Palette;
 
 import java.awt.Point;
 import java.awt.Dimension;
+import java.awt.RenderingHints;
 
 public class EditionView extends BaseView {
 
@@ -79,7 +80,8 @@ public class EditionView extends BaseView {
         }
 
         if(this.model.hasBackground()) {
-            g.drawImage(this.model.background().getImage(), 0, 0, null);
+            g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+            g.drawImage(this.model.background().getImage(), 0, 0, WIDTH, HEIGHT, null);
         }
 
         

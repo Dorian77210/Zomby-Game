@@ -87,6 +87,13 @@ public class JSONParser {
         }
     }
 
+    public static final EditMapModel jsonToMap(JSONObject json) {
+        EditMapModel model = new EditMapModel();
+        jsonToMap(model, json);
+
+        return model;
+    }
+
     public static final JSONObject keyboardToJSON() {
         return Engine.instance().getKeyboard().toJSONFormat();
     }

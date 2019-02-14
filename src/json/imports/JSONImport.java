@@ -1,6 +1,14 @@
 package json.imports;
 
+import helper.Path;
+
+import model.drawable.EditMapModel;
+
+import json.JSONParser;
+
 import java.io.*;
+
+import java.util.ArrayList;
 
 import org.json.JSONObject;
 
@@ -11,7 +19,6 @@ import org.json.JSONObject;
 **/
 
 public class JSONImport {
-
 
     /**
       * Import the game from the file 
@@ -39,5 +46,22 @@ public class JSONImport {
         }
 
         return buffer.toString();
+    }
+
+    public static final ArrayList<EditMapModel> loadAllFiles() {
+        File[] maps = new File(Path.MAP_PATH).listFiles();
+
+        String content;
+        JSONObject json;
+
+        ArrayList<EditMapModel> list = new ArrayList<EditMapModel>(maps.length);
+
+        for(File map : maps) {
+            content = load(map);
+            json = new JSONObject(content);
+            list.add(JSONParser.jsonToMap(json));
+        }
+
+        return list;
     }
 }
