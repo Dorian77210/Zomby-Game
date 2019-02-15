@@ -56,7 +56,7 @@ public class ActionToTouchView extends BaseView {
         //add border
         this.setBorder(BorderFactory.createLineBorder(Palette.PARAMETER_BORDER_COLOR));
 
-        //controllers
+        //controllersœ
         this.selectionTouchController = new SelectionTouchController(this.touch, this.action, this.model);
         this.editTouchController = new EditTouchController(this.touch, this.model, this.action);
     }   

@@ -50,7 +50,7 @@ public class SelectionMapView extends BaseView {
         this.previous = new JButton("<");
         this.add(this.previous, BorderLayout.WEST);
 
-        this.add(new SelectionMapActionView(), BorderLayout.SOUTH);
+        this.add(new SelectionMapActionView(this), BorderLayout.SOUTH);
 
         this.controller = new SelectionMapController(this, this.next, this.previous);
     }
@@ -76,5 +76,9 @@ public class SelectionMapView extends BaseView {
         this.index = Math.abs(this.index - 1);
         this.index %= this.maps.size();
         this.currentImage = this.maps.get(this.index).toBufferedImage();
+    }
+
+    public EditMapModel currentMap() {
+        return this.maps.get(this.index);
     }
 }

@@ -1,5 +1,7 @@
 package model.sprite;
 
+import enums.GameActions;
+
 import json.JSONParser;
 
 import javax.imageio.ImageIO;
@@ -38,5 +40,15 @@ public class BackgroundEntity extends Entity {
         json.put(JSONParser.PATH_JSON_TAG, this.file);
 
         return json;
+    }
+
+    @Override 
+    public void update() {
+
+    }
+
+    @Override 
+    public void update(GameActions action) {
+
     }
 }

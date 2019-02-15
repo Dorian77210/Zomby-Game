@@ -1,11 +1,14 @@
 package ui;
 
+import model.drawable.EditMapModel;
+
 import ui.view.HomeView;
 import ui.view.BaseView;
 import ui.view.EditMapView;
 import ui.view.binding.BindingTouchView;
 import ui.view.selection.SelectionMapView;
 import ui.modal.ExitApplicationModal;
+import ui.view.game.GameView;
 
 import enums.WindowViewState;
 
@@ -67,8 +70,6 @@ public class Window extends JFrame {
 
         if(this.state.equals(WindowViewState.HOME_STATE)) {
             this.currentView = new HomeView();
-        } else if(this.state.equals(WindowViewState.IN_GAME_STATE)) {
-
         } else if(this.state.equals(WindowViewState.EDIT_MAP_STATE)) {
             this.setSize(900, 900);
             this.currentView = new EditMapView();
@@ -80,6 +81,17 @@ public class Window extends JFrame {
 
         this.add(this.currentView);
         this.revalidate();
+    }
+
+    public void changeViewToGame(EditMapModel map) {
+        this.state = WindowViewState.IN_GAME_STATE;
+
+        this.remove(this.currentView);
+        this.currentView = new GameView(map);
+
+        this.add(this.currentView, BorderLayout.CENTER);
+        this.revalidate();
+        this.repaint();
     }
 
     public void closeApplicationWithMessage(String message) {

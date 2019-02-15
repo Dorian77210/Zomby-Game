@@ -15,7 +15,7 @@ public class SelectionMapActionView extends BaseView {
 
     private SelectionMapActionController controller;
 
-    public SelectionMapActionView() {
+    public SelectionMapActionView(SelectionMapView view) {
         super();
         this.setLayout(new FlowLayout(FlowLayout.CENTER));
 
@@ -25,6 +25,6 @@ public class SelectionMapActionView extends BaseView {
         this.play = new JButton("Play");
         this.add(this.play);
 
-        this.controller = new SelectionMapActionController(this, this.home, this.play);
+        this.controller = new SelectionMapActionController(view, this.home, this.play);
     }
 }

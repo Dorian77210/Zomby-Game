@@ -3,11 +3,13 @@ package model.sprite;
 import java.awt.Rectangle;
 import java.awt.Point;
 
+import enums.GameActions;
+
 import java.awt.image.BufferedImage;
 import java.awt.Dimension;
 
 /**
-  * The class <code>Sprite</code> reresents a sprite
+  * The class <code>Sprite</code> represents a sprite
   * @version 1.0
   * @author Dorian Terbah 
 **/
@@ -29,6 +31,8 @@ public abstract class Entity {
     }
 
     abstract boolean collide(Entity entity);    
+    abstract void update();
+    abstract void update(GameActions action);
 
     /***************************** 
     ***********GETTER************

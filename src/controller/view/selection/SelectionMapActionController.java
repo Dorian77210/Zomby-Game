@@ -4,6 +4,7 @@ import controller.base.ActionController;
 
 import ui.Window;
 import ui.view.selection.SelectionMapActionView;
+import ui.view.selection.SelectionMapView;
 
 import enums.WindowViewState;
 
@@ -18,9 +19,11 @@ public class SelectionMapActionController extends ActionController {
 
     private static final String PLAY_ACTION_COMMAND = "PLAY_ACTION_COMMAND";
 
-    private SelectionMapActionView view;
+    private SelectionMapView view;
 
-    public SelectionMapActionController(SelectionMapActionView view, JButton home, JButton play) {
+
+
+    public SelectionMapActionController(SelectionMapView view, JButton home, JButton play) {
         this.view = view;
 
         home.setActionCommand(HOME_ACTION_COMMAND);
@@ -37,7 +40,7 @@ public class SelectionMapActionController extends ActionController {
         if(actionCommand.equals(HOME_ACTION_COMMAND)) {
             window.changeViewTo(WindowViewState.HOME_STATE);
         } else if(actionCommand.equals(PLAY_ACTION_COMMAND)) {
-            window.changeViewTo(WindowViewState.IN_GAME_STATE);
+            window.changeViewToGame(this.view.currentMap());
         }
     }
 }

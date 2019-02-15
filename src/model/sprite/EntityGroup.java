@@ -67,4 +67,12 @@ public class EntityGroup extends ArrayList<Entity> {
         //remove entities
         this.removeAll(toRemove);
     }
+
+    public EntityGroup merge(EntityGroup group) {
+        EntityGroup result = new EntityGroup();
+        result.addAll(group);
+        result.addAll(this);
+
+        return result;
+    }
 }
