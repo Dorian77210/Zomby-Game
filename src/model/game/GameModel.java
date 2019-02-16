@@ -2,6 +2,8 @@ package model.game;
 
 import model.drawable.EditMapModel;
 
+import enums.SpriteType;
+
 import model.sprite.AnimatedEntity;
 import model.sprite.Entity;
 import model.sprite.EntityGroup;
@@ -28,6 +30,18 @@ public class GameModel {
         this.mapElements = map.getEntityGroup();
 
         this.zombies = new EntityGroup();
+    }
+
+    public EntityGroup getGroup(SpriteType type) {
+        if(type.equals(SpriteType.ELEMENT)) {
+            return this.mapElements;
+        }
+
+        if(type.equals(SpriteType.ZOMBY)) {
+            return this.zombies;
+        }
+
+        return null;
     }
 
     public BufferedImage background() {

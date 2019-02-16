@@ -1,7 +1,14 @@
 package model.sprite;
 
+import engine.Engine;
+
+import enums.SpriteType;
+
+import model.sprite.EntityGroup;
 import model.sprite.Entity;
 import model.sprite.Surface;
+import model.sprite.BulletEntity;
+
 import model.drawable.Tile;
 
 import enums.GameActions;
@@ -47,6 +54,9 @@ public class PlayerEntity extends AnimatedEntity {
 
     @Override 
     public void update(GameActions action) {
+        EntityGroup group = Engine.instance().getGameModel().getGroup(SpriteType.ELEMENT);
+        Surface oldSurface = new Surface(this.surface.x, this.surface.y, this.surface.width, this.surface.height);
+
         if(action.equals(GameActions.MOVE_DOWN)) {
             if(this.surface.y + this.surface.height <= EditionView.HEIGHT - PLAYER_SPEED) {
                 this.surface.y += PLAYER_SPEED;
@@ -75,6 +85,17 @@ public class PlayerEntity extends AnimatedEntity {
             }
         }
 
+        if(action.equals(GameActions.SHOOT)) {
+            int x = (this.surface.x + this.surface.width) / 2;
+            int y = (this.surface.y + this.surface.height) / 2;
+
+        }
+
+        if(group.collide(this)) {
+            this.index--;
+            this.surface = oldSurface;
+        }
+
         this.updateCurrentList(action);
     }
 
@@ -85,11 +106,29 @@ public class PlayerEntity extends AnimatedEntity {
         }
     }
 
+    private Point direction() {
+        Point p = null;
+        List<BufferedImage> list = this.sprites.get(GameActions.MOVE_DOWN);
+        if(list.equals(this.currentList)) return new Point(0, BulletEntity.BULLET_SPEED);
+
+        list = this.sprites.get(GameActions.MOVE_UP);
+        if(list.equals(this.currentList)) return new Point(0, -BulletEntity.BULLET_SPEED);
+
+        list = this.sprites.get(GameActions.MOVE_LEFT);
+        if(list.equals(this.currentList)) return new Point(-BulletEntity.BULLET_SPEED, 0);
+
+        
+
+        return p;
+    }
+
     @Override 
     public BufferedImage getImage() {
         int size = this.currentList.size();
         return this.currentList.get(this.index % size);
     }
+
+    
 
     private boolean isOutOfBounds(Surface surface) {
         if((surface.x + PLAYER_SPEED + surface.width < EditionView.WIDTH) || (surface.x - PLAYER_SPEED - surface.width > 0)) return true;
