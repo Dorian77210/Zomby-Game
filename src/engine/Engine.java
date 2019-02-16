@@ -1,10 +1,15 @@
 package engine;
 
 import model.game.GameModel;
-
+import model.sprite.BulletEntity;
 import model.game.Player;
 
+import helper.Path;
+
 import engine.control.Keyboard;
+
+import java.awt.Point;
+import java.util.HashMap;
 
 public class Engine {
 
@@ -23,6 +28,20 @@ public class Engine {
         this.model = null;
         this.isAlreadyInit = false;
         this.player = new Player();
+
+        this.initializeBulletMap();
+    }
+
+    private void initializeBulletMap() {
+        int speed = BulletEntity.BULLET_SPEED;
+        HashMap<Point, String> map = new HashMap<Point, String>(4);
+
+        map.put(new Point(speed, 0), Path.BULLET_IMAGES_PATH + "/bullet-right.png");
+        map.put(new Point(-speed, 0), Path.BULLET_IMAGES_PATH + "/bullet-left.png");
+        map.put(new Point(0, speed), Path.BULLET_IMAGES_PATH + "/bullet-bottom.png");
+        map.put(new Point(0, -speed), Path.BULLET_IMAGES_PATH + "/bullet-top.png");
+
+        BulletEntity.directionToFile = map;
     }
 
     public static Engine instance() {

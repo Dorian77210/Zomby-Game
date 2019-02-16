@@ -15,6 +15,8 @@ public class Path {
     public static final String GROUND_IMAGES_PATH = IMAGE_PATH + "/grounds";
     public static final String ITEM_IMAGES_PATH = IMAGE_PATH + "/items";
     public static final String PLAYER_IMAGES_PATH = IMAGE_PATH + "/player";
+    public static final String BULLET_IMAGES_PATH = IMAGE_PATH + "/bullets";
+
 
     public static final String CONFIG_PATH = BASE_PATH + "/config";
     public static final String KEY_CONFIG_PATH = CONFIG_PATH + "/keys.json";

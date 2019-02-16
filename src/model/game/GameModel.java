@@ -22,6 +22,8 @@ public class GameModel {
 
     private EntityGroup zombies;
 
+    private EntityGroup bullets;
+
     public GameModel(EditMapModel map) {
         this.model = map;
 
@@ -30,6 +32,8 @@ public class GameModel {
         this.mapElements = map.getEntityGroup();
 
         this.zombies = new EntityGroup();
+
+        this.bullets = new EntityGroup();
     }
 
     public EntityGroup getGroup(SpriteType type) {
@@ -41,6 +45,10 @@ public class GameModel {
             return this.zombies;
         }
 
+        if(type.equals(SpriteType.BULLET)) {
+            return this.bullets;
+        }
+
         return null;
     }
 
@@ -50,6 +58,7 @@ public class GameModel {
 
     public EntityGroup toBlit() {
         EntityGroup group = this.zombies.merge(this.mapElements);
+        group = group.merge(this.bullets);
 
         return group;
     }

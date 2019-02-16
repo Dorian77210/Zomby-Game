@@ -55,12 +55,15 @@ public class PlayerEntity extends AnimatedEntity {
     @Override 
     public void update(GameActions action) {
         EntityGroup group = Engine.instance().getGameModel().getGroup(SpriteType.ELEMENT);
+        EntityGroup bullets = Engine.instance().getGameModel().getGroup(SpriteType.BULLET);
+
         Surface oldSurface = new Surface(this.surface.x, this.surface.y, this.surface.width, this.surface.height);
 
         if(action.equals(GameActions.MOVE_DOWN)) {
             if(this.surface.y + this.surface.height <= EditionView.HEIGHT - PLAYER_SPEED) {
                 this.surface.y += PLAYER_SPEED;
                 this.index++;
+                this.updateCurrentList(action);
             }
         } 
 
@@ -68,6 +71,7 @@ public class PlayerEntity extends AnimatedEntity {
             if(this.surface.y >= PLAYER_SPEED) {
                 this.surface.y -= PLAYER_SPEED;
                 this.index++;
+                this.updateCurrentList(action);
             }
         }
 
@@ -75,6 +79,7 @@ public class PlayerEntity extends AnimatedEntity {
             if(this.surface.x >= PLAYER_SPEED) {
                 this.surface.x -= PLAYER_SPEED;
                 this.index++;
+                this.updateCurrentList(action);
             }
         }
 
@@ -82,21 +87,21 @@ public class PlayerEntity extends AnimatedEntity {
             if(this.surface.x + this.surface.width <= EditionView.WIDTH - PLAYER_SPEED) {
                 this.surface.x += PLAYER_SPEED;
                 this.index++;
+                this.updateCurrentList(action);
             }
         }
 
         if(action.equals(GameActions.SHOOT)) {
             int x = (this.surface.x + this.surface.width) / 2;
             int y = (this.surface.y + this.surface.height) / 2;
-
+            Point direction = this.direction();
+            bullets.add(new BulletEntity(x, y, direction));
         }
 
         if(group.collide(this)) {
             this.index--;
             this.surface = oldSurface;
         }
-
-        this.updateCurrentList(action);
     }
 
     private void updateCurrentList(GameActions action) {
@@ -107,7 +112,6 @@ public class PlayerEntity extends AnimatedEntity {
     }
 
     private Point direction() {
-        Point p = null;
         List<BufferedImage> list = this.sprites.get(GameActions.MOVE_DOWN);
         if(list.equals(this.currentList)) return new Point(0, BulletEntity.BULLET_SPEED);
 
@@ -117,9 +121,10 @@ public class PlayerEntity extends AnimatedEntity {
         list = this.sprites.get(GameActions.MOVE_LEFT);
         if(list.equals(this.currentList)) return new Point(-BulletEntity.BULLET_SPEED, 0);
 
-        
+        list = this.sprites.get(GameActions.MOVE_RIGHT);
+        if(list.equals(this.currentList)) return new Point(BulletEntity.BULLET_SPEED, 0);
 
-        return p;
+        return null;
     }
 
     @Override 
