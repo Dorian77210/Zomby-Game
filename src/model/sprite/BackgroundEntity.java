@@ -2,6 +2,8 @@ package model.sprite;
 
 import enums.GameActions;
 
+import helper.Loader;
+
 import json.JSONParser;
 
 import javax.imageio.ImageIO;
@@ -14,17 +16,13 @@ import org.json.JSONObject;
 
 public class BackgroundEntity extends Entity {
 
-    private String file;
+    public String file;
 
     public BackgroundEntity(String image) {
         super(0, 0);
         this.file = image;
 
-        try {
-            this.image = ImageIO.read(new java.io.File(image));
-        } catch(IOException exception) {
-            System.err.println("Error when loading the image " + image);
-        }
+        this.image = Loader.loadImage(image);
 
         this.surface = new Surface(new Point(0, 0), this.image.getWidth(), this.image.getHeight());
     }

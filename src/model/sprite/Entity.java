@@ -30,7 +30,10 @@ public abstract class Entity {
     public Entity(int x, int y) {
     }
 
-    abstract boolean collide(Entity entity);    
+    public boolean collide(Entity entity) {
+        return this.surface.intersects(entity.surface);
+    }
+
     abstract void update();
     abstract void update(GameActions action);
 

@@ -10,6 +10,9 @@ import model.sprite.Entity;
 import model.sprite.BackgroundEntity;
 import model.sprite.Surface;
 import model.sprite.EntityGroup;
+import model.sprite.PlayerEntity;
+
+import model.game.Player;
 
 import ui.view.editable.EditionView;
 import ui.view.BaseView;
@@ -75,9 +78,12 @@ public class GameView extends BaseView {
 
         g.drawImage(model.background(), 0, 0, EditionView.WIDTH, EditionView.HEIGHT, null);
 
-        this.blit(g, model.toBlit());
-
+        //draw the player
+        Player pl = Engine.instance().getPlayer();
+        final PlayerEntity entity = pl.entity();
+        g.drawImage(entity.getImage(), entity.surface().x, entity.surface().y, null);
         
+        this.blit(g, model.toBlit());
     }
 
     private void blit(Graphics2D p, EntityGroup group) {

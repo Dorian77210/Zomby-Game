@@ -16,10 +16,19 @@ import org.json.JSONObject;
 
 import model.drawable.EditMapModel;
 
+import helper.Cast;
 import helper.Path;
+import helper.Loader;
+
+import javax.imageio.ImageIO;
+
+import java.io.IOException;
+
+import java.awt.image.BufferedImage;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class JSONParser {
@@ -37,12 +46,18 @@ public class JSONParser {
     public static final String Y_JSON_TAG = "y";
 
     public static final String PATH_JSON_TAG = "path";
+    public static final String PATHS_JSON_TAG = "paths";
 
     public static final String WIDTH_JSON_TAG = "width";
 
     public static final String HEIGHT_JSON_TAG = "height";
 
     public static final int JSON_INDENTATIONS = 4;
+
+    public static final String JSON_BOTTOM_TAG = "bottom";
+    public static final String JSON_TOP_TAG = "top";
+    public static final String JSON_RIGHT_TAG = "right";
+    public static final String JSON_LEFT_TAG = "left";
 
     public static final JSONObject mapToJSON(EditMapModel model) {
         JSONObject json = new JSONObject();
@@ -117,6 +132,32 @@ public class JSONParser {
         }
 
         return keyBinding;
+    }
 
+    public static final HashMap<GameActions, List<BufferedImage>> jsonToCharacter(JSONObject json) {
+        HashMap<GameActions, List<BufferedImage>> images = new HashMap<GameActions, List<BufferedImage>>();
+        List<BufferedImage> list;
+
+        String[] directions = JSONObject.getNames(json);
+        JSONObject pathsJSON, directionJSON;
+
+        String imagePath;
+
+        for(String direction : directions) {
+            list = new ArrayList<BufferedImage>();
+            directionJSON = json.getJSONObject(direction);
+
+            pathsJSON = directionJSON.getJSONObject(PATHS_JSON_TAG);
+
+            for(String path : JSONObject.getNames(pathsJSON)) {
+                imagePath = pathsJSON.getString(path);
+                list.add(Loader.loadImage(imagePath));
+            }
+
+            GameActions actions = Cast.directionToGameActions(direction);
+            images.put(actions, list);
+        }
+
+        return images;
     }
 }

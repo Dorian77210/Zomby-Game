@@ -1,0 +1,10 @@
+{
+    "entities": {"entity0": {
+        "path": "./rsc/images/items/house-1.png",
+        "surface": {
+            "x": 420,
+            "y": 90
+        }
+    }},
+    "background": {"path": "./rsc/images/grounds/sand-ground.png"}
+}

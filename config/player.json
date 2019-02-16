@@ -1,0 +1,34 @@
+{
+    "bottom": {
+        "paths": {
+            "path1": "./rsc/images/player/bottom/player-bottom-1.png",
+            "path2": "./rsc/images/player/bottom/player-bottom-2.png",
+            "path3": "./rsc/images/player/bottom/player-bottom-3.png",
+            "path4": "./rsc/images/player/bottom/player-bottom-4.png"
+        }
+    },
+    "top": {
+        "paths": {
+            "path1": "./rsc/images/player/top/player-top-1.png",
+            "path2": "./rsc/images/player/top/player-top-2.png",
+            "path3": "./rsc/images/player/top/player-top-3.png",
+            "path4": "./rsc/images/player/top/player-top-4.png"
+        }
+    },
+    "left": {
+        "paths": {
+            "path1": "./rsc/images/player/left/player-left-1.png",
+            "path2": "./rsc/images/player/left/player-left-2.png",
+            "path3": "./rsc/images/player/left/player-left-3.png",
+            "path4": "./rsc/images/player/left/player-left-4.png"
+        }
+    },
+    "right": {
+        "paths": {
+            "path1": "./rsc/images/player/right/player-right-1.png",
+            "path2": "./rsc/images/player/right/player-right-2.png",
+            "path3": "./rsc/images/player/right/player-right-3.png",
+            "path4": "./rsc/images/player/right/player-right-4.png"
+        }
+    }
+}

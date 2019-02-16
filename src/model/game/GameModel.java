@@ -20,8 +20,6 @@ public class GameModel {
 
     private EntityGroup zombies;
 
-    private AnimatedEntity player;
-
     public GameModel(EditMapModel map) {
         this.model = map;
 
@@ -30,16 +28,14 @@ public class GameModel {
         this.mapElements = map.getEntityGroup();
 
         this.zombies = new EntityGroup();
-        //this.player = new PlayerEntity();
     }
 
     public BufferedImage background() {
-        return this.model.toBufferedImage();
+        return this.model.background().getImage();
     }
 
     public EntityGroup toBlit() {
         EntityGroup group = this.zombies.merge(this.mapElements);
-        group.add(player);
 
         return group;
     }
