@@ -2,6 +2,8 @@ package ui.view.game;
 
 import engine.Engine;
 
+import ui.view.editable.EditionView;
+
 import controller.view.game.GameController;
 
 import model.game.GameModel;
@@ -11,8 +13,10 @@ import model.sprite.BackgroundEntity;
 import model.sprite.Surface;
 import model.sprite.EntityGroup;
 import model.sprite.PlayerEntity;
+import model.sprite.AnimatedEntity;
 
 import model.game.Player;
+import model.drawable.Tile;
 
 import ui.view.editable.EditionView;
 import ui.view.BaseView;
@@ -21,6 +25,7 @@ import javax.swing.JComponent;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Dimension;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -33,6 +38,8 @@ public class GameView extends BaseView {
 
     public GameView(EditMapModel map) { 
         super();
+
+        this.setPreferredSize(new Dimension(EditionView.WIDTH, EditionView.HEIGHT));
 
         this.controller = new GameController(this);
 
@@ -79,9 +86,9 @@ public class GameView extends BaseView {
         g.drawImage(model.background(), 0, 0, EditionView.WIDTH, EditionView.HEIGHT, null);
 
         //draw the player
-        Player pl = Engine.instance().getPlayer();
-        final PlayerEntity entity = pl.entity();
-        g.drawImage(entity.getImage(), entity.surface().x, entity.surface().y, null);
+        Player player = Engine.instance().getPlayer();
+        final AnimatedEntity entity = player.entity();
+        g.drawImage(entity.getImage(), entity.surface().x, entity.surface().y, Tile.WIDTH, Tile.HEIGHT, null);
         
         this.blit(g, model.toBlit());
     }

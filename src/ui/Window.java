@@ -89,7 +89,8 @@ public class Window extends JFrame {
         this.remove(this.currentView);
         this.currentView = new GameView(map);
 
-        this.add(this.currentView, BorderLayout.CENTER);
+        this.add(this.currentView);
+        this.pack();
         this.revalidate();
         this.repaint();
     }
