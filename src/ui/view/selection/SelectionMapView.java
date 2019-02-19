@@ -73,8 +73,7 @@ public class SelectionMapView extends BaseView {
     }
 
     public void previous() {
-        this.index = Math.abs(this.index - 1);
-        this.index %= this.maps.size();
+        this.index = (this.index - 1 + this.maps.size()) % this.maps.size();
         this.currentImage = this.maps.get(this.index).toBufferedImage();
     }
 

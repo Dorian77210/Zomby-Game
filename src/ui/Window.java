@@ -93,6 +93,9 @@ public class Window extends JFrame {
         this.pack();
         this.revalidate();
         this.repaint();
+
+        this.currentView.setFocusable(true);
+        this.currentView.requestFocus();
     }
 
     public void closeApplicationWithMessage(String message) {

@@ -8,6 +8,9 @@ import enums.GameActions;
 import java.awt.image.BufferedImage;
 import java.awt.Dimension;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
   * The class <code>Sprite</code> represents a sprite
   * @version 1.0
@@ -63,5 +66,27 @@ public abstract class Entity {
 
     public BufferedImage getImage() {
         return this.image;
+    }
+
+    public List<Point> positionToTiles() {
+        List<Point> range = new ArrayList<Point>();
+
+        int loopX = this.surface.width / PlayerEntity.PLAYER_SPEED;
+        int loopY = this.surface.height / PlayerEntity.PLAYER_SPEED;
+
+        int xx = this.surface.x / PlayerEntity.PLAYER_SPEED + loopX;
+        int yy = this.surface.y / PlayerEntity.PLAYER_SPEED + loopY;
+
+        for(int y = this.surface.y / PlayerEntity.PLAYER_SPEED; y < yy; y++) {
+            for(int x = this.surface.x / PlayerEntity.PLAYER_SPEED; x < xx; x++) {
+                range.add(new Point(x, y));
+            }
+        }
+
+        return range;
+    }
+
+    public Point positionToTile() {
+        return new Point(this.surface.x / PlayerEntity.PLAYER_SPEED, this.surface.y / PlayerEntity.PLAYER_SPEED);
     }
 }

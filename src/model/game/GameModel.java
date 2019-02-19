@@ -24,6 +24,8 @@ public class GameModel {
 
     private EntityGroup bullets;
 
+    private GameMap gameMap;
+
     public GameModel(EditMapModel map) {
         this.model = map;
 
@@ -34,6 +36,8 @@ public class GameModel {
         this.zombies = new EntityGroup();
 
         this.bullets = new EntityGroup();
+
+        this.gameMap = new GameMap(this.mapElements);
     }
 
     public EntityGroup getGroup(SpriteType type) {

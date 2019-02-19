@@ -68,11 +68,23 @@ public class EntityGroup extends ArrayList<Entity> {
         this.removeAll(toRemove);
     }
 
+    public void collideAndRemove(EntityGroup group) {
+        for(Entity entity : group) {
+            this.collideAndRemove(entity);
+        }
+    }
+
     public EntityGroup merge(EntityGroup group) {
         EntityGroup result = new EntityGroup();
         result.addAll(group);
         result.addAll(this);
 
         return result;
+    }
+
+    public void update() {
+        for(Entity entity : this) {
+            entity.update();
+        }
     }
 }

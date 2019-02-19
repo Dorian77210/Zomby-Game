@@ -40,4 +40,9 @@ public class Surface extends Rectangle {
 
         return json;
     }
+
+    @Override 
+    public String toString() {
+        return "Width = " + this.width + ", height = " + this.height + ", x = " + this.x + ", y = " + this.y;
+    }
 }

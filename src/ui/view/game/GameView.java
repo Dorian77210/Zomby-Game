@@ -54,7 +54,7 @@ public class GameView extends BaseView {
 
     private class Updater extends TimerTask {
 
-        public static final int INTERVAL_IN_MILLISECONDS = 1000 / 30;
+        public static final int INTERVAL_IN_MILLISECONDS = 1000 / 60;
 
         private GameView view;
 
@@ -64,6 +64,10 @@ public class GameView extends BaseView {
 
         @Override 
         public void run() {
+            //update the sprites
+            Engine.display.updateEntities();
+            Engine.physics.checkCollisions();
+
             this.view.repaint();
         }
     }

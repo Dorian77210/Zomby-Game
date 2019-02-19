@@ -20,9 +20,6 @@ public class GameController extends KeyController {
     public GameController(GameView gameView) {
         this.gameView = gameView;
         this.gameView.addKeyListener(this);
-
-        this.gameView.setFocusable(true);
-        this.gameView.requestFocusInWindow();
     }
 
     @Override 
@@ -43,11 +40,11 @@ public class GameController extends KeyController {
 
     @Override 
     public void keyTyped(KeyEvent event) {
-        this.gameView.setFocusable(true);
+    
     }
 
     @Override 
     public void keyReleased(KeyEvent event) {
-        this.gameView.setFocusable(true);
+    
     }
 }

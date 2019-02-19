@@ -33,7 +33,7 @@ import org.json.JSONObject;
 
 public class PlayerEntity extends AnimatedEntity {
 
-    private static final int PLAYER_SPEED = 5;
+    public static final int PLAYER_SPEED = 10;
 
     public PlayerEntity(int x, int y) {
         super(x, y);
@@ -92,8 +92,9 @@ public class PlayerEntity extends AnimatedEntity {
         }
 
         if(action.equals(GameActions.SHOOT)) {
-            int x = (this.surface.x + this.surface.width) / 2;
-            int y = (this.surface.y + this.surface.height) / 2;
+            int x = this.surface.x + (this.surface.width / 2);
+            int y = this.surface.y + (this.surface.height / 2);
+
             Point direction = this.direction();
             bullets.add(new BulletEntity(x, y, direction));
         }

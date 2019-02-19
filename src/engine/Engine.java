@@ -15,6 +15,10 @@ public class Engine {
 
     private static Engine engine;
 
+    public static final Display display = new Display();
+
+    public static final Physics physics = new Physics();
+
     private Keyboard keyboard;
 
     private GameModel model;
@@ -68,6 +72,9 @@ public class Engine {
         if(!this.isAlreadyInit) {
             this.isAlreadyInit = true;
             this.model = model;
+
+            Engine.display.initializeGameModel(this.model);
+            Engine.physics.initializeGameModel(this.model);
         }
     }
 }

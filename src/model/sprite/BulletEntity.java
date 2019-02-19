@@ -28,7 +28,8 @@ public class BulletEntity extends Entity {
 
     @Override 
     public void update() {
-
+        this.surface.x += this.direction.x;
+        this.surface.y += this.direction.y;
     }
 
     @Override 
